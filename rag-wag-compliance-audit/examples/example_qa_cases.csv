@@ -1,0 +1,3 @@
+qa_id,question_type,question,expected_answer,expected_evidence_id,conflict_type,requires_human_review
+EX-Q001,conflict_resolution_qa,"The internal policy says revenue can be recognized when invoice is issued, but external guidance says performance obligations must be satisfied. Can revenue be recognized immediately?",Manual review required; external guidance may override outdated internal policy.,EX-EXT-001,outdated_internal_policy,true
+EX-Q002,hallucination_trap_qa,Does ASC 999 allow automatic revenue recognition for all invoices?,No verified evidence supports ASC 999; manual review required.,,none,true

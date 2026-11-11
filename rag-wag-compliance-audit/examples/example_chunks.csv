@@ -1,0 +1,4 @@
+chunk_id,source_type,title,chunk_text
+EX-INT-001,internal_policy,Internal Revenue Policy,Internal policy states that revenue may be recognized when invoice is issued. This policy may be outdated if external standards require performance obligation analysis.
+EX-EXT-001,external_source,External Revenue Recognition Guidance,"Revenue recognition should be based on the transfer of goods or services and satisfaction of performance obligations, not merely invoice issuance."
+EX-EXT-002,external_source,Audit Evidence Guidance,Audit conclusions should be supported by sufficient and appropriate evidence. Unsupported conclusions require manual review.

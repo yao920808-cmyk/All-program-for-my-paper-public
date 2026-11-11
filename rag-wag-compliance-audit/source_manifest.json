@@ -1,0 +1,186 @@
+{
+  "package": "rag-wag-compliance-audit",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 129,
+      "sha256": "05955f4ba7d20bac592b1e605492b2ddbab7d97c6f58bc247e7a0957f10cfc40"
+    },
+    {
+      "path": "examples/example_chunks.csv",
+      "bytes": 652,
+      "sha256": "59ba47aac0dc6dcd8dd1cf430ff64bbcc10bcf7889c0e3efd6d1c9660af25bf0"
+    },
+    {
+      "path": "examples/example_qa_cases.csv",
+      "bytes": 615,
+      "sha256": "4e6d1fe5d5fb7c7fa45ff01c140b23832c2c2b810d04ceefd3ffdda92bf9d401"
+    },
+    {
+      "path": "examples/run_example.sh",
+      "bytes": 653,
+      "sha256": "13121505b243c43c870e283ee81cdb3a6881b4150f9ddf0f5c23470201ee944d"
+    },
+    {
+      "path": "prompts/generation_prompt.txt",
+      "bytes": 1468,
+      "sha256": "9f26294c523bfd409d5c38e1f568677300d3042d2ef3d8417fa882ccbff8bbf3"
+    },
+    {
+      "path": "prompts/hybrid_rag_wag_prompt.txt",
+      "bytes": 1559,
+      "sha256": "1087a40b9e7268ca4fb4ea5d5adb12f733eda71a1b0fc34832b91daa108168cc"
+    },
+    {
+      "path": "prompts/llm_only_prompt.txt",
+      "bytes": 532,
+      "sha256": "1a181821a97f30a42e980a3136e27c7d6838c47e5864f1cc21a11a380860efaf"
+    },
+    {
+      "path": "prompts/report_prompt.txt",
+      "bytes": 644,
+      "sha256": "6a04ab2ff533baa251362a2feb0552f8a11fb655b2f8a9ffe95c2762290b6ee5"
+    },
+    {
+      "path": "prompts/static_rag_prompt.txt",
+      "bytes": 569,
+      "sha256": "01fc91be799126271732aad9f768fd31cf538d5dbcc9c8762fb3d5a82bc37ef5"
+    },
+    {
+      "path": "prompts/verifier_prompt.txt",
+      "bytes": 784,
+      "sha256": "28d932be24aa0dfcdfe0579245cd5069a85d9c094e2608fc1332379761828c54"
+    },
+    {
+      "path": "prompts/wag_only_prompt.txt",
+      "bytes": 603,
+      "sha256": "724e1c57128bdce7a84e49c77baeb5f9ffb62462e86ec433a0b5c5ce0c044949"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5553,
+      "sha256": "6408b86fa3fd5baf1bd9e3c2969ba9fa0e9cf73461c2635be2de1d8dc792f4db"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 69,
+      "sha256": "958ac04b14ac353da67f044c7ab8962d0e97dc31348d3dd0905b3276638e82ec"
+    },
+    {
+      "path": "scripts/01_run_five_models.py",
+      "bytes": 4349,
+      "sha256": "e7f86ab5264583f98c5feff3745aacdd36a612332603677b5103fa1cc95338fe"
+    },
+    {
+      "path": "scripts/02_run_verifier.py",
+      "bytes": 883,
+      "sha256": "fbace08ec062e8fdd30e1fff021c09cf61ce79aba41e8aa1636b28a1131d5c2b"
+    },
+    {
+      "path": "scripts/03_evaluate_results.py",
+      "bytes": 1964,
+      "sha256": "dfcb909890f2afd0df63fc1148fbbea6f765efa9d0b19ca8076dc2f27b4a63a4"
+    },
+    {
+      "path": "scripts/04_run_ablation_study.py",
+      "bytes": 3793,
+      "sha256": "e6374b175edf82cf9d6ef88d268e98aba0c654b5911fada627437704468c6bba"
+    },
+    {
+      "path": "scripts/05_error_analysis.py",
+      "bytes": 3747,
+      "sha256": "97105ba1d86ab62e99bf926d4c67bf31f5dbd275c9e381fffc120d9aaf72b450"
+    },
+    {
+      "path": "scripts/06_lock_experiment_inputs.py",
+      "bytes": 5349,
+      "sha256": "41deb7160e383b7f598e52818df446b1cd1661b1eb23f6a214bc60e64db1ee03"
+    },
+    {
+      "path": "scripts/07_build_publication_tables.py",
+      "bytes": 7283,
+      "sha256": "d9bf2c5404bb242c1fdd5aec5e18c8053e51dc3faa7077eafbddeacb05b4feda"
+    },
+    {
+      "path": "scripts/08_validate_smoke_outputs.py",
+      "bytes": 4937,
+      "sha256": "2fbc675bd071fef99fca0e2f27dd00700ddaf5454bb0f8930f73086ada447603"
+    },
+    {
+      "path": "scripts/09_make_balanced_smoke_subset.py",
+      "bytes": 2287,
+      "sha256": "cfc49a5b905ef4d39d4ea573a58eb1d5f8b66fd56e5c3a430d3865da2dd076eb"
+    },
+    {
+      "path": "scripts/10_apply_runtime_verifier.py",
+      "bytes": 1753,
+      "sha256": "e2205263f99716a4afec13f13c0acab3a1ae31fe81b781aeb47231a93eae323e"
+    },
+    {
+      "path": "scripts/run_prepared_step6.ps1",
+      "bytes": 3162,
+      "sha256": "dc2f62dc2330c75a0ef3f6f134af61d145936888a095d1a86a25d3b5c6318ed3"
+    },
+    {
+      "path": "src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/answer_generator.py",
+      "bytes": 8103,
+      "sha256": "c408fcd733b270315f61a700abbb387afc7c06953db6d1200a4890c3d65f48fe"
+    },
+    {
+      "path": "src/common.py",
+      "bytes": 4064,
+      "sha256": "95f4643d4eb96a3f4999ffe93bf14ed333dee6d061b36849d40104cb5dd09380"
+    },
+    {
+      "path": "src/conflict_detector.py",
+      "bytes": 3279,
+      "sha256": "7f1c4b731490aa5ed5e35fef8b740c458909bbc7bb7fb57abb5adfd6f062d27e"
+    },
+    {
+      "path": "src/evaluator.py",
+      "bytes": 3892,
+      "sha256": "1cdca8c3811d4d049c967cf59a0c675011179ec05af5ae2c577d5f89bf5c92e7"
+    },
+    {
+      "path": "src/evidence_ranker.py",
+      "bytes": 3222,
+      "sha256": "c29ee4c192c9b47dfd802c16346e1a8b39c3a85621fdf5e9d01ee8ae8ef4e464"
+    },
+    {
+      "path": "src/llm_client.py",
+      "bytes": 14681,
+      "sha256": "8386f47d596f32e6e323f165d62672760d7382b8ec8bdef64dad52ac7b3a2309"
+    },
+    {
+      "path": "src/model_runner.py",
+      "bytes": 12860,
+      "sha256": "9c2ca61736da1420c7ff6775f3cb191b1c55e0df54392be5e6371726b21211ba"
+    },
+    {
+      "path": "src/query_classifier.py",
+      "bytes": 2669,
+      "sha256": "1f0b5fc33b1bd7803b3d81ffa403e23921dd046188b25ea696f4d2c02e31ebd1"
+    },
+    {
+      "path": "src/retrievers.py",
+      "bytes": 4116,
+      "sha256": "dfeb3889b2c84ff3b56a45496396a9cfd21449d806559a4efededa9e98c489b3"
+    },
+    {
+      "path": "src/runtime_verifier.py",
+      "bytes": 4069,
+      "sha256": "0aad2cf233f881fe50dbd3ccaf81eeeb589988528914ea73e5dd5f89abd8e6c4"
+    },
+    {
+      "path": "src/verifier.py",
+      "bytes": 4661,
+      "sha256": "731f00482343f339bbad7a86dd122b2a1aef163b3b88bed1795660d6b5b986a1"
+    }
+  ],
+  "data_policy": "Only illustrative synthetic CSV examples are included; no study datasets, reviewer records, API keys, or model outputs."
+}
