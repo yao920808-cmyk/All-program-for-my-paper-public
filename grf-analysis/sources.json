@@ -1,0 +1,58 @@
+[
+  {
+    "source": "Juefei_Yuan_journal\\Journal\\MLP.py",
+    "sha256": "176476e3c2456c3c90e7b902b6565de3556ad6b99de0e7f6bff2428e5fdbabe0"
+  },
+  {
+    "source": "Juefei_Yuan_journal\\Journal\\MLP2.py",
+    "sha256": "c212a2bac37c197ef511a851aad7cc783a6a6e2ac299d8a6888bcd630de57e69"
+  },
+  {
+    "source": "Juefei_Yuan_journal\\Journal\\read_and_save_data.py",
+    "sha256": "29bedf099ec60f99cfbe73a99e3be28b522ed6540bf248b84a367f3ed2918631"
+  },
+  {
+    "source": "Juefei_Yuan_journal\\Journal\\SVM.py",
+    "sha256": "c60d76bc0e0cc6de426b35aba12e4f161838c0ca1b5bbc727d2393d62f9c7fcf"
+  },
+  {
+    "source": "Juefei_Yuan_journal\\Journal\\SVM2.py",
+    "sha256": "3f0dea5debd803619e2ce89521f804e1417bb90e1cbb7e39cda711d501579fa3"
+  },
+  {
+    "source": "Juefei_Yuan_journal\\Journal\\to_juefei.py",
+    "sha256": "53525309fa83ac33b822bce715fb95bcac0e05c9a80a443a17befca56d21bfe7"
+  },
+  {
+    "source": "Juefei_Yuan_journal\\Journal\\Training.py",
+    "sha256": "9a0135fa12e9e2e2f1b2e67545452ff0088b8eafa9d8d7084dab3c7844dce8f2"
+  },
+  {
+    "source": "Juefei_Yuan_journal\\Journal\\transformer.py",
+    "sha256": "3566463ff1a11f8bcfe2073c391d176b2611aa8a32b6b533f864f46f8866d239"
+  },
+  {
+    "source": "OneDrive_2025-07-25.zip::source code/ConvolutionalNeuralNetworkCode_gender.py",
+    "sha256": "189fda44fefc8f0982c554e1d46b6f89502d2c3f7d34553001d51c2934af6f8f"
+  },
+  {
+    "source": "OneDrive_2025-07-25.zip::source code/LinearCode.py",
+    "sha256": "5d4fed69e0472d2ba3efac5b9e0334d67a2d9cc593f15a62ad5472edac3dd426"
+  },
+  {
+    "source": "OneDrive_2025-07-25.zip::source code/NeuralNetworkCode_gender.py",
+    "sha256": "d27c4b1ab5f2f343bb4c32375550738a25d0f204801d861280a2be595f1253a0"
+  },
+  {
+    "source": "OneDrive_2025-07-25.zip::source code/NeuralNetworkCode_index.py",
+    "sha256": "9ea316e522350e285750e7348ca3e7ff4c91193edb09f7d37810fc68f5c07127"
+  },
+  {
+    "source": "OneDrive_2025-07-25.zip::source code/RandomForestCode_gender.py",
+    "sha256": "512b1917486a79cb4869e703b817d8c76d1ccd2f6eab1c981609dfb8e17b2984"
+  },
+  {
+    "source": "OneDrive_2025-07-25.zip::source code/ReadData_And_SaveToOneFile.py",
+    "sha256": "935df8d920f4d7cf8e910049a840dd4f41f24bf9c0aeb02fde92927589d9403e"
+  }
+]
