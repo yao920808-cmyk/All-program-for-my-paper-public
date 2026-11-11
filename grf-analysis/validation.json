@@ -1,0 +1,52 @@
+{
+  "feature_table_shape": [
+    13702,
+    111
+  ],
+  "runs": [
+    {
+      "model": "rf",
+      "exit_code": 0
+    },
+    {
+      "model": "nn",
+      "exit_code": 0
+    },
+    {
+      "model": "cnn",
+      "exit_code": 0
+    },
+    {
+      "model": "svm",
+      "exit_code": 0
+    },
+    {
+      "model": "mlp",
+      "exit_code": 0
+    },
+    {
+      "model": "linear",
+      "exit_code": 0
+    },
+    {
+      "model": "diffusion",
+      "exit_code": 0
+    }
+  ],
+  "neural_epochs": 1,
+  "diffusion_rows": 256,
+  "diffusion_steps": 4,
+  "integration": "PASS: extraction, six models on both representations, identity, diffusion",
+  "integration_data": "48 synthetic trials; 32 samples per channel",
+  "real_diffusion_final_exit_code": 0,
+  "python": "3.12.10",
+  "packages": {
+    "numpy": "2.4.2",
+    "pandas": "3.0.2",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.8.0",
+    "joblib": "1.5.3",
+    "torch": "2.11.0+cu128"
+  },
+  "extraction_real_trials": 4
+}
