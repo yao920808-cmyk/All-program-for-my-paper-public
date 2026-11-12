@@ -29,3 +29,4 @@ Compare `scrambled.png`, `reconstructed.png`, and `reference_reassembly.png` in 
 ## Comparison suites
 
 Configure your local paths in `config.py` before running `python run_full_comparison.py`. The launcher runs the traditional classifiers, feature MLP, PairNet, and fusion/GraphSAGE suites with their default arguments. The comparison suites also use pandas and support XGBoost.
+ 
