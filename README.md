@@ -1,85 +1,85 @@
 # All-program-for-my-paper
 
-论文研究代码合集，集中整理 GRF 步态信号分析、病理显微图像碎片重建，以及 RAG/WAG 财务合规问答实验的程序。
+A collection of research code for GRF gait signal analysis, pathology microscopy image tile reconstruction, and RAG/WAG financial compliance question-answering experiments.
 
-三个子项目分别对应独立的研究流程，具有不同的数据格式、依赖和运行入口。本页提供整体导航与运行说明；算法细节和历史程序映射请结合子项目文档与源码阅读。
+The three subprojects implement independent research workflows, each with its own data formats, dependencies, and entry points. This page provides an overview and usage instructions. For algorithm details and mappings between the original and reorganized programs, consult the subproject documentation and source code.
 
-> 当前上传内容以源码、配置、提示词和少量演示数据为主。完整研究数据、论文原稿、预训练权重与完整实验输出未随本仓库提供。示例运行或流程检查通过，不等于已经复现论文中的性能指标。
+> This repository primarily contains source code, configurations, prompts, and a small amount of demonstration data. Complete research datasets, manuscripts, pretrained weights, and full experimental outputs are not included. Successfully running an example or passing a pipeline check does not establish that the performance reported in a paper has been reproduced.
 
-## 项目导航
+## Project Overview
 
-| 子项目 | 研究任务 | 主要方法与入口 | 详细说明 |
+| Subproject | Research Task | Main Methods and Entry Points | Documentation |
 | --- | --- | --- | --- |
-| [grf-analysis](grf-analysis/) | 地面反作用力（Ground Reaction Force，GRF）特征提取、性别分类与身份识别 | 108 维特征、原始六通道输入；RF、NN、CNN、SVM、MLP、线性回归基线；条件扩散增强 | [GRF README](grf-analysis/README.md) |
-| [pathology-reconstruction](pathology-reconstruction/) | 病理显微图像碎片的邻接预测、位置与方向恢复 | 手工特征、传统机器学习、Feature MLP、PairNet、RF/PairNet 融合、GraphSAGE 与 GAT 重排序 | [配置](pathology-reconstruction/config.py) · [集成引擎](pathology-reconstruction/pathology_reconstruction_experiment.py) |
-| [rag-wag-compliance-audit](rag-wag-compliance-audit/) | 内外部证据支持的财务合规问答与核验对比 | LLM Only、Static RAG、WAG Only、Hybrid RAG-WAG、Hybrid RAG-WAG + Runtime Verifier | [RAG/WAG README](rag-wag-compliance-audit/README.md) |
+| [grf-analysis](grf-analysis/) | Ground Reaction Force (GRF) feature extraction, gender classification, and participant identification | 108-dimensional features and raw six-channel inputs; RF, NN, CNN, SVM, MLP, a linear regression baseline, and conditional diffusion augmentation | [GRF README](grf-analysis/README.md) |
+| [pathology-reconstruction](pathology-reconstruction/) | Adjacency prediction and recovery of tile positions and orientations in pathology microscopy images | Handcrafted features, traditional machine learning, Feature MLP, PairNet, RF/PairNet fusion, and GraphSAGE/GAT reranking | [Configuration](pathology-reconstruction/config.py) · [Integrated Engine](pathology-reconstruction/pathology_reconstruction_experiment.py) |
+| [rag-wag-compliance-audit](rag-wag-compliance-audit/) | Financial compliance question answering and verification using internal and external evidence | LLM Only, Static RAG, WAG Only, Hybrid RAG-WAG, and Hybrid RAG-WAG + Runtime Verifier | [RAG/WAG README](rag-wag-compliance-audit/README.md) |
 
-## 仓库结构
+## Repository Structure
 
 ```text
 All-program-for-my-paper/
 ├── README.md
 ├── grf-analysis/
-│   ├── main.py                              # 特征提取与统一训练入口
-│   ├── to_juefei.py                         # 每通道 18 项特征
-│   ├── diffusion.py                        # 条件扩散增强与 MLP 分类
-│   ├── verify.py                           # 自包含合成数据流程检查
+│   ├── main.py                              # Feature extraction and unified training
+│   ├── to_juefei.py                         # 18 features per channel
+│   ├── diffusion.py                        # Conditional diffusion augmentation and MLP classification
+│   ├── verify.py                           # Self-contained synthetic-data pipeline checks
 │   ├── requirements.txt
-│   ├── sources.json                        # 原始来源文件哈希
-│   └── validation.json                     # 已记录的验证范围
+│   ├── sources.json                        # Original source file hashes
+│   └── validation.json                     # Recorded validation scope
 ├── pathology-reconstruction/
-│   ├── config.py                           # 默认路径与实验配置
-│   ├── data_pipeline.py                    # 数据准备、评估与输出
-│   ├── pre_adapter.py                      # 加载集成实验引擎
+│   ├── config.py                           # Default paths and experiment configuration
+│   ├── data_pipeline.py                    # Data preparation, evaluation, and output
+│   ├── pre_adapter.py                      # Integrated experiment engine loader
 │   ├── traditional_ml_suite.py
 │   ├── feature_mlp_suite.py
 │   ├── pairnet_suite.py
 │   ├── fusion_graphsage_suite.py
 │   ├── run_full_comparison.py
 │   ├── pathology_reconstruction_experiment.py
-│   └── pathology_reconstruction_*.py        # 五种模型的独立入口
+│   └── pathology_reconstruction_*.py        # Separate entry points for five model variants
 └── rag-wag-compliance-audit/
-    ├── src/                                # 检索、生成、核验与评估模块
-    ├── scripts/                            # 实验、消融、检查与表格导出
-    ├── prompts/                            # 提示词模板
-    ├── examples/                           # 虚构问答与证据示例
+    ├── src/                                # Retrieval, generation, verification, and evaluation
+    ├── scripts/                            # Experiments, ablations, checks, and table exports
+    ├── prompts/                            # Prompt templates
+    ├── examples/                           # Fictional QA cases and evidence examples
     ├── requirements.txt
-    └── source_manifest.json                # 已上传源文件清单与 SHA256
+    └── source_manifest.json                # Uploaded source file inventory and SHA256 hashes
 ```
 
-## 获取代码与运行环境
+## Getting the Code and Setting Up the Environment
 
 ```bash
 git clone --branch All-program-for-my-paper --single-branch https://github.com/yao920808-cmyk/All-program-for-my-paper.git
 cd All-program-for-my-paper
 ```
 
-当前分支名也是 `All-program-for-my-paper`。以下每个子项目的第一组命令均从仓库根目录开始执行，后续命令在该子项目目录中执行。
+The current branch is also named `All-program-for-my-paper`. For each subproject below, run the first command block from the repository root, then run subsequent commands from that subproject's directory.
 
-| 子项目 | Python 与依赖 | 硬件要求 |
+| Subproject | Python and Dependencies | Hardware Requirements |
 | --- | --- | --- |
-| GRF 分析 | 已有验证记录使用 Python 3.12；依赖版本见其 `requirements.txt` | 支持 CPU 运行 |
-| 病理图像重建 | 建议使用 Python 3.12；NumPy、pandas、scikit-learn、scikit-image、OpenCV、PyTorch；XGBoost 可选 | 传统 ML、Feature MLP、独立 PairNet 对比可在 CPU 运行；集成重建入口要求 CUDA GPU |
-| RAG/WAG 合规实验 | Python 3.10+，核心程序仅使用标准库；`.ps1` 包装脚本需要 PowerShell | Mock 演示无需 GPU 或 API Key；真实生成需要可用的模型服务配置 |
+| GRF Analysis | Existing validation records use Python 3.12; dependency versions are specified in its `requirements.txt` | Supports CPU execution |
+| Pathology Image Reconstruction | Python 3.12 recommended; NumPy, pandas, scikit-learn, scikit-image, OpenCV, and PyTorch; XGBoost is optional | Traditional ML, Feature MLP, and standalone PairNet comparisons support CPU execution; integrated reconstruction entry points require a CUDA GPU |
+| RAG/WAG Compliance Experiments | Python 3.10+; the core program uses only the standard library; the `.ps1` wrapper requires PowerShell | Mock demonstrations require neither a GPU nor an API key; real generation requires a configured model service |
 
-建议为不同子项目创建独立虚拟环境。下文 GRF 和病理项目的 Windows PowerShell 示例直接调用虚拟环境中的 Python，无需先激活环境；Linux/macOS 中对应路径为 `.venv/bin/python`。病理集成重建当前受 CUDA 要求限制。
+Separate virtual environments are recommended for the subprojects. The Windows PowerShell examples for GRF and pathology analysis below invoke the virtual environment's Python directly, so activation is unnecessary. On Linux/macOS, the corresponding executable is `.venv/bin/python`. Integrated pathology reconstruction remains subject to its CUDA requirement.
 
-## 一、GRF 步态信号分析
+## 1. GRF Gait Signal Analysis
 
-### 功能与输入
+### Features and Inputs
 
-`main.py` 提供两条处理路径：从步态 CSV 提取每通道 18 项描述符，得到六通道共 **108 维特征**；或使用 `--raw` 将六通道原始采样值展开成表格后训练。
+`main.py` provides two processing paths: extracting 18 descriptors per channel from gait CSV files to produce **108-dimensional features** across six channels, or using `--raw` to expand the raw six-channel samples into a table for training.
 
-原始步态 CSV 需要包含以下列：
+Raw gait CSV files must contain the following columns:
 
 ```text
 leftVForce, leftAPForce, leftMLForce,
 rightVForce, rightAPForce, rightMLForce
 ```
 
-受试者元数据至少需要 `index` 和 `gender` 列。原始数据按受试者目录组织，例如 `data/trials/001/trial_01.csv`；提取程序按目录中的受试者 ID 匹配元数据。输出特征表含 108 个特征列及 `gender`、`candidate`、`source`；原始采样表则包含六通道及 `gender`、`index`、`source`。
+Participant metadata must include at least the `index` and `gender` columns. Organize the raw data in participant-specific directories, such as `data/trials/001/trial_01.csv`; the extraction program matches metadata using the participant ID in the directory structure. The output feature table contains 108 feature columns plus `gender`, `candidate`, and `source`. The raw-sample table contains the six force channels plus `gender`, `index`, and `source`.
 
-### 安装与流程检查
+### Installation and Pipeline Checks
 
 ```powershell
 cd grf-analysis
@@ -88,62 +88,62 @@ python -m venv .venv
 .\.venv\Scripts\python.exe verify.py
 ```
 
-`verify.py` 自动生成临时合成数据，检查两种输入表示、六种模型、身份识别及条件扩散，并在结束后清理临时数据。该检查不需要原始研究数据，其输出不用于衡量论文性能。
+`verify.py` generates temporary synthetic data, checks both input representations, all six models, participant identification, and conditional diffusion, then removes the temporary data. This check does not require the original research data, and its outputs do not measure the performance reported in a paper.
 
-### 使用自己的数据
+### Using Your Own Data
 
-以下 `data/` 路径是示例，需要准备对应文件或替换为自己的数据路径。
+The following `data/` paths are examples. Prepare the corresponding files or replace these paths with your own.
 
 ```powershell
-# 提取 108 维特征
+# Extract 108-dimensional features
 .\.venv\Scripts\python.exe main.py extract --root "data/trials" --metadata "data/participantData.csv" --output "results/features.csv"
 
-# 随机森林分类
+# Random Forest classification
 .\.venv\Scripts\python.exe main.py train --csv "results/features.csv" --model rf --output "results/rf"
 
-# 神经网络分类
+# Neural network classification
 .\.venv\Scripts\python.exe main.py train --csv "results/features.csv" --model nn --epochs 200 --output "results/nn"
 
-# 展开原始六通道采样值，并使用 CNN
+# Expand raw six-channel samples and train a CNN
 .\.venv\Scripts\python.exe main.py extract --root "data/trials" --metadata "data/participantData.csv" --raw --output "results/raw.csv"
 .\.venv\Scripts\python.exe main.py train --csv "results/raw.csv" --raw --model cnn --epochs 200 --output "results/raw-cnn"
 
-# 原始采样表上的受试者身份识别
+# Participant identification using the raw-sample table
 .\.venv\Scripts\python.exe main.py train --csv "results/raw.csv" --raw --target index --model nn --output "results/identity"
 
-# 条件扩散数据增强，再训练 MLP 分类器
+# Conditional diffusion augmentation followed by MLP classification
 .\.venv\Scripts\python.exe diffusion.py --csv "results/features.csv" --epochs 200 --steps 100 --output "results/diffusion"
 ```
 
-`--model` 接受 `rf`、`nn`、`cnn`、`svm`、`mlp`、`linear`。默认分类目标为 `gender`；`linear` 是回归基线，报告 MSE。提取可先加 `--limit 20` 检查数据结构，遇到无效文件时会生成 `.errors.json` 并终止，避免静默遗漏。
+`--model` accepts `rf`, `nn`, `cnn`, `svm`, `mlp`, and `linear`. The default classification target is `gender`; `linear` is a regression baseline that reports MSE. For an initial extraction check, add `--limit 20`. Invalid files trigger an `.errors.json` report and terminate extraction to prevent silent omissions.
 
-统一训练入口输出预处理对象、模型文件、`metrics.json` 和 `predictions.csv`；神经网络另有 `history.csv`。扩散入口保存扩散模型、分类器及预处理参数，最终分类评估打印到终端。每次实验应使用独立输出目录。
+The unified training entry point saves preprocessing objects, model files, `metrics.json`, and `predictions.csv`; neural network runs also produce `history.csv`. The diffusion entry point saves the diffusion model, classifier, and preprocessing parameters, and prints the final classification evaluation to the terminal. Use a separate output directory for each experiment.
 
-关于原始程序与整理后实现的对应关系、PyTorch 移植差异及特征公式，请阅读 [GRF 项目说明](grf-analysis/README.md)。
+For mappings between the original programs and their reorganized implementations, differences introduced by the PyTorch port, and feature formulas, see the [GRF project documentation](grf-analysis/README.md).
 
-## 二、病理显微图像碎片重建
+## 2. Pathology Microscopy Image Tile Reconstruction
 
-### 功能与程序入口
+### Features and Program Entry Points
 
-该项目先学习图像碎片边缘的邻接关系，再结合候选边评分、束搜索与模拟退火恢复碎片排列。输入可以来自完整图像切块，也可以使用现有切片目录；支持位置、方向及图像相似性评估。
+This project learns adjacency relationships between image tile edges, then combines candidate-edge scoring, beam search, and simulated annealing to recover tile arrangements. Inputs can be tiles generated from complete images or existing tile directories. Evaluation covers positions, orientations, and image similarity.
 
-| 程序 | 作用 |
+| Program | Purpose |
 | --- | --- |
-| `traditional_ml_suite.py` | 比较 `color`、`texture`、`stain`、`fusion` 四类特征与 LR、SVM、RF、XGB 四种模型 |
-| `feature_mlp_suite.py` | 比较四类手工特征上的 MLP 邻接分类器 |
-| `pairnet_suite.py` | 比较 `rgb` 与 `rgb_hed` 两种输入的 PairNet |
-| `fusion_graphsage_suite.py` | 读取传统 ML、Feature MLP 汇总，重训选中模型并比较重建结果，以及 PairNet、融合、GraphSAGE 方案 |
-| `run_full_comparison.py` | 按默认配置依次运行传统 ML、Feature MLP、PairNet 与融合/GraphSAGE 对比 |
-| `pathology_reconstruction_experiment.py` | 集成的训练、图重排序、搜索重建、批量评估和结果导出引擎 |
-| `pathology_reconstruction_random_forest.py` | Random Forest 重建入口 |
-| `pathology_reconstruction_pairnet.py` | PairNet 重建入口 |
-| `pathology_reconstruction_fusion.py` | RF + PairNet 融合重建入口 |
-| `pathology_reconstruction_graphsage.py` | 融合评分 + GraphSAGE 重排序入口 |
-| `pathology_reconstruction_gat.py` | 融合评分 + GAT 重排序入口 |
+| `traditional_ml_suite.py` | Compares four feature families—`color`, `texture`, `stain`, and `fusion`—with LR, SVM, RF, and XGB |
+| `feature_mlp_suite.py` | Compares MLP adjacency classifiers using the four handcrafted feature families |
+| `pairnet_suite.py` | Compares PairNet with `rgb` and `rgb_hed` inputs |
+| `fusion_graphsage_suite.py` | Reads traditional ML and Feature MLP summaries, retrains the selected models, and compares their reconstruction results with PairNet, fusion, and GraphSAGE variants |
+| `run_full_comparison.py` | Runs traditional ML, Feature MLP, PairNet, and fusion/GraphSAGE comparisons sequentially using the default configuration |
+| `pathology_reconstruction_experiment.py` | Integrated engine for training, graph reranking, reconstruction search, batch evaluation, and result export |
+| `pathology_reconstruction_random_forest.py` | Random Forest reconstruction entry point |
+| `pathology_reconstruction_pairnet.py` | PairNet reconstruction entry point |
+| `pathology_reconstruction_fusion.py` | RF + PairNet fusion reconstruction entry point |
+| `pathology_reconstruction_graphsage.py` | Fusion scoring + GraphSAGE reranking entry point |
+| `pathology_reconstruction_gat.py` | Fusion scoring + GAT reranking entry point |
 
-### 环境与数据准备
+### Environment and Data Preparation
 
-此子项目尚无锁定版本的 `requirements.txt`。下面的依赖列表依据源码导入整理，适合搭建环境，不代表已固定的论文复现环境。
+This subproject does not yet include a version-pinned `requirements.txt`. The dependency list below was compiled from source imports and can be used to set up an environment; it does not constitute a fixed environment for reproducing paper results.
 
 ```powershell
 cd pathology-reconstruction
@@ -151,57 +151,57 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install numpy pandas scikit-learn scikit-image opencv-python
 ```
 
-随后在上述虚拟环境中安装与本机环境匹配的 **CUDA 版 PyTorch**，可参考 [PyTorch 官方安装页面](https://pytorch.org/get-started/locally/)。将官方命令中的 `pip` 换为 `.\.venv\Scripts\python.exe -m pip`，确保安装到本项目环境，再检查：
+Next, install a **CUDA-enabled PyTorch build** compatible with your machine into this virtual environment. Refer to the [official PyTorch installation page](https://pytorch.org/get-started/locally/). Replace `pip` in the official command with `.\.venv\Scripts\python.exe -m pip` to install into this project's environment, then check:
 
 ```powershell
 .\.venv\Scripts\python.exe -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
 ```
 
-集成重建需要最后一行输出 `True`。若要使用真正的 XGBoost，另行安装 `xgboost`；未安装时，当前代码会回退到 `HistGradientBoostingClassifier`，但输出标签仍为 `xgb`，分析结果时应记录实际实现。
+Integrated reconstruction requires the final line to print `True`. To use the actual XGBoost implementation, install `xgboost` separately. If it is unavailable, the current code falls back to `HistGradientBoostingClassifier` while retaining the output label `xgb`; record the actual implementation when analyzing results.
 
-将完整病理图像放入自备目录，例如 `data/images/`。程序直接读取该目录下的 PNG、JPG/JPEG、BMP、TIF/TIFF 文件。建议使用多个独立图像，并明确指定测试图像；只有一张图像时，代码会将其同时用于训练与测试。
+Place complete pathology images in a directory you provide, such as `data/images/`. The program reads PNG, JPG/JPEG, BMP, and TIF/TIFF files directly from that directory. Use multiple independent images and explicitly specify the test image. If only one image is available, the code uses it for both training and testing.
 
-若已有切片，可通过 `--slice_root` 指定切片根目录；切片目录命名与元数据解析规则见集成引擎中的 `find_slice_folder_for_image`、`read_slice_metadata` 等函数。没有现成切片时，使用 `--no_existing_slices` 从完整图像切块。
+If you already have tiles, specify their root directory using `--slice_root`. See functions such as `find_slice_folder_for_image` and `read_slice_metadata` in the integrated engine for directory naming and metadata parsing rules. Without existing tiles, use `--no_existing_slices` to generate tiles from complete images.
 
-### 运行示例
+### Usage Examples
 
 ```powershell
-# 传统机器学习邻接分类对比
+# Traditional machine learning comparison for adjacency classification
 .\.venv\Scripts\python.exe traditional_ml_suite.py --train_dir "data/images" --test_image "data/images/test.png" --no_existing_slices --rows 4 --cols 5 --output_dir "outputs/traditional_ml"
 
-# GraphSAGE 集成重建示例，训练轮数显式固定
+# Integrated GraphSAGE reconstruction with an explicitly fixed epoch count
 .\.venv\Scripts\python.exe pathology_reconstruction_graphsage.py --train_dir "data/images" --test_image "data/images/test.png" --no_existing_slices --rows 4 --cols 5 --epochs 20 --max_epochs 20 --graph_epochs 8 --output_dir "outputs/graphsage"
 ```
 
-数据路径和测试文件需自行替换。模型独立入口接受 `--rows`、`--cols`，也支持 `--grid_choice`：`1=3×6`、`2=4×5`、`3=5×4`、`4=5×7`、`5=10×8`、`6=5×5`。显式指定网格可避免交互选择。
+Replace the data paths and test file with your own. The separate model entry points accept `--rows` and `--cols`, and also support `--grid_choice`: `1=3×6`, `2=4×5`, `3=5×4`, `4=5×7`, `5=10×8`, and `6=5×5`. Specifying the grid explicitly avoids interactive selection.
 
-模块化对比默认路径来自 [config.py](pathology-reconstruction/config.py)，当前仍包含现有本地 `F:` 盘路径。执行 `run_full_comparison.py` 前需先修改默认配置；该脚本当前使用默认解析参数，不转发命令行自定义路径。单独执行 `fusion_graphsage_suite.py` 时，还需要通过 `--traditional_summary` 和 `--feature_mlp_summary` 指向前序对比产生的汇总 CSV。
+Default paths for the modular comparisons come from [config.py](pathology-reconstruction/config.py) and still contain local `F:` drive paths. Update the default configuration before running `run_full_comparison.py`; this script currently parses default arguments and does not forward custom command-line paths. When running `fusion_graphsage_suite.py` separately, also use `--traditional_summary` and `--feature_mlp_summary` to point to the summary CSV files generated by the preceding comparisons.
 
-**硬件区别：** 独立的传统 ML、Feature MLP、PairNet 对比脚本可使用 CPU；调用 `run_experiment` 的五个模型入口、集成主程序及融合/GraphSAGE 对比中的集成阶段要求 CUDA GPU。集成入口的 `--cpu` 已禁用。
+**Hardware distinction:** The standalone traditional ML, Feature MLP, and PairNet comparison scripts support CPU execution. The five model entry points that call `run_experiment`, the integrated main program, and the integrated stages of the fusion/GraphSAGE comparison require a CUDA GPU. The integrated entry point's `--cpu` option has been disabled.
 
-### 输出与评价
+### Outputs and Evaluation
 
-邻接分类阶段输出模型、各组合的 `metrics.json` 和 CSV/JSON 汇总，指标包括 Accuracy、Precision、Recall、F1、ROC-AUC 与 AP。
+The adjacency classification stage saves models, a `metrics.json` file for each combination, and CSV/JSON summaries. Metrics include Accuracy, Precision, Recall, F1, ROC-AUC, and AP.
 
-重建阶段输出 `original.png`、`scrambled.png`、`reconstructed.png`、`reference_reassembly.png`、`metrics.json`，并按模型保存权重和汇总表。重建指标包括位置准确率、邻接准确率、方向准确率、位置与方向联合准确率、SSIM、像素匹配比例和完全匹配状态。`reference_reassembly.png` 是参考拼接图，模型预测结果为 `reconstructed.png`。
+The reconstruction stage saves `original.png`, `scrambled.png`, `reconstructed.png`, `reference_reassembly.png`, and `metrics.json`, along with model-specific weights and summary tables. Reconstruction metrics include position accuracy, adjacency accuracy, orientation accuracy, joint position-and-orientation accuracy, SSIM, pixel match ratio, and exact-match status. `reference_reassembly.png` is the reference assembly; `reconstructed.png` contains the model's predicted reconstruction.
 
-## 三、RAG/WAG 财务合规问答实验
+## 3. RAG/WAG Financial Compliance Question-Answering Experiments
 
-### 对比方案与处理流程
+### Comparison Variants and Processing Pipeline
 
-| 命令行方案名 | 对应方法 |
+| Command-Line Variant | Method |
 | --- | --- |
-| `llm_only` | 不提供检索证据的 LLM 基线 |
-| `static_rag` | 基于内部资料的检索增强生成 |
-| `wag_only` | 基于外部/公开来源快照的检索增强生成 |
-| `hybrid_rag_wag` | 结合内部与外部证据 |
-| `hybrid_rag_wag_verifier` | 混合证据生成后增加运行时核验 |
+| `llm_only` | LLM baseline without retrieved evidence |
+| `static_rag` | Retrieval-augmented generation using internal materials |
+| `wag_only` | Retrieval-augmented generation using external/public-source snapshots |
+| `hybrid_rag_wag` | Generation combining internal and external evidence |
+| `hybrid_rag_wag_verifier` | Hybrid evidence generation followed by runtime verification |
 
-流程包括问题分类、双通道词项检索、来源与日期检查、冲突分析、结构化回答、运行时核验，以及离线评分和错误分析。这里的 **WAG 使用预先准备的外部来源快照，不执行实时网页搜索**。
+The pipeline includes query classification, dual-channel lexical retrieval, source and date checks, conflict analysis, structured answers, runtime verification, offline scoring, and error analysis. Here, **WAG uses prepared external-source snapshots and does not perform live web searches**.
 
-### 离线快速开始
+### Offline Quick Start
 
-以下 PowerShell 命令使用仓库自带的虚构示例，无需 API Key：
+The following PowerShell commands use the fictional examples included in the repository and require no API key:
 
 ```powershell
 cd rag-wag-compliance-audit
@@ -209,56 +209,56 @@ cd rag-wag-compliance-audit
 python scripts/08_validate_smoke_outputs.py --model-outputs outputs/model_outputs/example_model_outputs.jsonl --output outputs/evaluation_results/example_validation.csv --expected-rows 10
 ```
 
-示例包含 2 个问题，每个运行 5 种方案，共生成 10 条模型输出。结果保存在 `outputs/model_outputs/`、`outputs/verifier_outputs/` 和 `outputs/evaluation_results/`。Mock 用于检查流程与文件结构，不调用真实模型，也不代表研究性能。
+The example contains 2 questions, each processed by 5 variants, producing 10 model-output records. Results are saved under `outputs/model_outputs/`, `outputs/verifier_outputs/`, and `outputs/evaluation_results/`. Mock mode checks the pipeline and file structure; it does not call a real model or measure research performance.
 
-Bash 用户可在该项目目录执行 `bash examples/run_example.sh`，运行生成、离线评分与指标汇总三个步骤。
+Bash users can run `bash examples/run_example.sh` from the project directory to execute generation, offline scoring, and metric aggregation.
 
-### 自备研究数据与真实模型
+### Using Your Own Research Data and Real Models
 
-问答 CSV 包含 `qa_id`、`question_type`、`question`、`expected_answer`、`expected_evidence_id`、`conflict_type`、`requires_human_review` 等字段；证据 CSV 包含 `chunk_id`、`source_type`、`title`、`chunk_text`。具体格式见 [examples](rag-wag-compliance-audit/examples/)。
+The QA CSV includes fields such as `qa_id`, `question_type`, `question`, `expected_answer`, `expected_evidence_id`, `conflict_type`, and `requires_human_review`. The evidence CSV includes `chunk_id`, `source_type`, `title`, and `chunk_text`. See [examples](rag-wag-compliance-audit/examples/) for the exact formats.
 
-完整的 470 条研究问答集、内外部语料、来源快照、交易数据和人工评审记录未包含在当前上传中。部分脚本默认读取相邻的 `prepared_data/experiments/`，使用自己的数据时应显式提供输入路径。
+The complete 470-question research dataset, internal and external corpora, source snapshots, transaction data, and human review records are not included in this upload. Some scripts default to a sibling `prepared_data/experiments/` directory. Provide explicit input paths when using your own data.
 
-真实生成通过 `scripts/01_run_five_models.py` 或 PowerShell 包装脚本运行；需要先配置服务凭据，明确指定账号可用的模型 ID，并移除 Mock 选项。源码包含 OpenAI、OpenRouter 和 Gemini 适配，具体配置及安全输入密钥的示例见 [子项目 README](rag-wag-compliance-audit/README.md) 与 [llm_client.py](rag-wag-compliance-audit/src/llm_client.py)。真实请求可能产生服务费用。更改模型、提示词或数据时应使用新的输出名称；`--resume` 仅跳过已存在的问题/方案组合，不检查配置是否一致。
+Run real generation through `scripts/01_run_five_models.py` or the PowerShell wrapper. Configure the service credentials first, explicitly specify a model ID available to your account, and remove the Mock option. The source includes OpenAI, OpenRouter, and Gemini adapters. Configuration details and examples for entering keys securely are provided in the [subproject README](rag-wag-compliance-audit/README.md) and [llm_client.py](rag-wag-compliance-audit/src/llm_client.py). Real requests may incur service charges. Use a new output name when changing the model, prompts, or data; `--resume` only skips existing question/variant combinations and does not verify configuration consistency.
 
-### 实验脚本
+### Experiment Scripts
 
-| 脚本 | 用途 |
+| Script | Purpose |
 | --- | --- |
-| `01_run_five_models.py` | 运行五种对比方案，可选择其中部分方案 |
-| `02_run_verifier.py` | 基于标准答案及标签的离线评分 |
-| `03_evaluate_results.py` | 汇总自动评价指标 |
-| `04_run_ablation_study.py` | RAG、WAG、核验、日期检查、来源排序等组件消融 |
-| `05_error_analysis.py` | 导出错误案例 |
-| `06_lock_experiment_inputs.py` | 准备数据划分、输入哈希及来源记录 |
-| `07_build_publication_tables.py` | 生成论文表格所需的 CSV |
-| `08_validate_smoke_outputs.py` | 检查输出结构、引用 ID 及真实响应元信息 |
-| `09_make_balanced_smoke_subset.py` | 按问题类型抽取流程检查子集 |
-| `10_apply_runtime_verifier.py` | 对已有模型输出重放运行时核验，无需重新请求模型 |
+| `01_run_five_models.py` | Runs the five comparison variants, with support for selecting a subset |
+| `02_run_verifier.py` | Performs offline scoring against reference answers and labels |
+| `03_evaluate_results.py` | Aggregates automatic evaluation metrics |
+| `04_run_ablation_study.py` | Runs component ablations for RAG, WAG, verification, date checks, and source ranking |
+| `05_error_analysis.py` | Exports error cases |
+| `06_lock_experiment_inputs.py` | Prepares data splits, input hashes, and provenance records |
+| `07_build_publication_tables.py` | Generates CSV files for publication tables |
+| `08_validate_smoke_outputs.py` | Checks output structure, citation IDs, and real-response metadata |
+| `09_make_balanced_smoke_subset.py` | Samples a pipeline-check subset by question type |
+| `10_apply_runtime_verifier.py` | Replays runtime verification on existing model outputs without making new model requests |
 
-回答包含合规结论、支持证据、冲突分析、生效日期分析、人工复核标记和限制说明。自动指标包括 `answer_accuracy` 代理指标、`retrieved_citation_match`、证据 Precision/Recall、启发式幻觉率、冲突与日期处理、人工复核标记准确率等。
+Answers include a compliance conclusion, supporting evidence, conflict analysis, effective-date analysis, a human review flag, and limitations. Automatic metrics include the `answer_accuracy` proxy, `retrieved_citation_match`, evidence Precision/Recall, a heuristic hallucination rate, conflict and effective-date handling, and human review flag accuracy.
 
-## 数据、验证与结果解释
+## Data, Validation, and Result Interpretation
 
-| 项目 | 仓库已包含 | 完整研究仍需自行准备 |
+| Project | Included in the Repository | Required for the Complete Research Workflow |
 | --- | --- | --- |
-| GRF 分析 | 源码、固定依赖、原始来源哈希、历史验证记录、合成数据检查程序 | 原始步态 CSV、受试者元数据或已有特征表、完整训练结果 |
-| 病理重建 | 重建引擎、模型入口、模块化对比与路径配置 | 原始图像、已有切片及其元数据（如使用）、匹配的运行环境与实验结果 |
-| RAG/WAG | 源码、提示词、脚本、源文件清单、2 条虚构问答与 3 条虚构证据 | 完整问答和语料、可追溯外部快照、人工评审、真实模型输出 |
+| GRF Analysis | Source code, pinned dependencies, original source hashes, historical validation records, and synthetic-data checks | Raw gait CSV files, participant metadata or an existing feature table, and complete training results |
+| Pathology Reconstruction | Reconstruction engine, model entry points, modular comparisons, and path configuration | Original images, existing tiles and their metadata if used, a compatible environment, and experimental results |
+| RAG/WAG | Source code, prompts, scripts, a source inventory, 2 fictional QA cases, and 3 fictional evidence passages | Complete QA data and corpora, traceable external snapshots, human reviews, and real-model outputs |
 
-使用结果时请结合当前实现的评价边界：
+Interpret results within the evaluation limits of the current implementation:
 
-- **GRF：** 统一训练入口使用固定种子 42 的分层行级划分，训练/验证/测试为 50%/25%/25%；扩散流程为 60%/20%/20%。同一受试者可能进入不同集合，结果不等同于对未见受试者的泛化性能。历史特征保留了非标准 `Sample_entropy` 等兼容实现，公式解释见子项目文档。
-- **病理重建：** 优先按图像划分训练和验证，数据不足时会回退到碎片对层面划分。集成流程会依据参考重建指标从搜索候选及逐轮结果中选择最佳结果；这些指标不能直接视为严格盲测结果。正式对比需固定划分、训练轮数、搜索预算及选模规则，并使用独立测试数据。
-- **RAG/WAG：** 当前检索基于词项重叠；来源排序虽被记录，真实生成提示词仍使用各通道检索列表，排序消融不能据此直接证明生成收益。引用匹配检查的是 ID 是否属于检索集合，不能证明证据在语义上支持结论。自动回答准确率和幻觉检查采用代理规则，需要结合人工语义评审。
-- **核验区别：** RAG/WAG 的 Runtime Verifier 不使用标准答案标签；离线 scorer 使用预期标签。正式实验需明确可提供给运行时的元数据，防止标准答案或评估标签成为生成提示。
+- **GRF:** The unified training entry point uses a stratified row-level split with a fixed seed of 42 and training/validation/test proportions of 50%/25%/25%; the diffusion workflow uses 60%/20%/20%. The same participant may appear in different splits, so these results do not establish generalization to unseen participants. Historical features retain compatibility implementations such as the nonstandard `Sample_entropy`; see the subproject documentation for formula details.
+- **Pathology reconstruction:** Training and validation are preferably split at the image level, with a tile-pair-level fallback when data are insufficient. The integrated workflow selects the best result among search candidates and progressive training rounds using reference reconstruction metrics. These metrics cannot be treated directly as strict blind-test results. Formal comparisons should fix the data splits, training epochs, search budget, and model-selection rules, and use independent test data.
+- **RAG/WAG:** Retrieval currently uses lexical overlap. Although source rankings are recorded, real-generation prompts still use the per-channel retrieval lists, so ranking ablations do not directly establish generation benefits. Citation matching checks whether an ID belongs to the retrieved evidence set; it does not establish that the evidence semantically supports the conclusion. Automatic answer accuracy and hallucination checks use proxy rules and require human semantic evaluation.
+- **Verification distinction:** The RAG/WAG Runtime Verifier does not use reference-answer labels, whereas the offline scorer uses expected labels. Formal experiments must define which metadata are available at runtime and prevent reference answers or evaluation labels from becoming generation hints.
 
-[GRF validation.json](grf-analysis/validation.json) 记录了既有验证范围，包括神经网络单轮训练和小规模扩散检查，不代表完成了论文中的完整训练。本次 README 整理实际运行了 RAG/WAG 的离线 Mock 流程，10 条输出通过结构检查；未运行完整 GRF 或病理训练，也未执行真实 LLM 实验。
+[GRF validation.json](grf-analysis/validation.json) records the existing validation scope, including single-epoch neural network training and small-scale diffusion checks. It does not establish completion of the full training described in a paper. During preparation of this README, the RAG/WAG offline Mock pipeline was executed and all 10 output records passed structural checks. Full GRF and pathology training and real-LLM experiments were not run.
 
-复现实验时建议保存代码提交号、Python/依赖版本、随机种子、数据划分、输入哈希、完整参数及输出目录。真实 LLM 实验还应保存模型 ID、提示词版本和外部资料快照；温度为零不保证跨次响应完全一致。
+For reproducibility, retain the code commit ID, Python and dependency versions, random seeds, data splits, input hashes, complete parameters, and output directories. For real-LLM experiments, also retain the model ID, prompt version, and external-source snapshots. A temperature of zero does not guarantee identical responses across runs.
 
-## 来源、引用与许可
+## Sources, Citation, and Licensing
 
-[grf-analysis/sources.json](grf-analysis/sources.json) 记录原始来源文件哈希；[rag-wag-compliance-audit/source_manifest.json](rag-wag-compliance-audit/source_manifest.json) 记录该子项目已上传源文件清单与 SHA256。引用时请注明对应论文与实际使用的代码提交版本，具体作者归属以原始项目记录为准。
+[grf-analysis/sources.json](grf-analysis/sources.json) records original source file hashes. [rag-wag-compliance-audit/source_manifest.json](rag-wag-compliance-audit/source_manifest.json) records the uploaded source file inventory and SHA256 hashes for that subproject. When citing this work, identify the corresponding paper and the code commit actually used. Specific authorship should be determined from the original project records.
 
-当前仓库未附带统一的开源许可证。使用或再分发代码、数据及第三方材料前，请核对相应来源的授权条件。
+This repository does not currently include a repository-wide open-source license. Before using or redistributing code, data, or third-party materials, check the applicable authorization and licensing terms.
